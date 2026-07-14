@@ -1,0 +1,1 @@
+export const testimonials = [{quote:"[Verified student or parent testimonial required]",author:"[Name and relationship required]"},{quote:"[Verified student or parent testimonial required]",author:"[Name and relationship required]"}];
