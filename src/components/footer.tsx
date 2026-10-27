@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Brand } from "./brand";
 import { Icon } from "./icon";
 import { siteConfig } from "@/data/site-config";
-import { contactActions } from "@/data/contact";
+import { contactActions, contactPhones } from "@/data/contact";
 
 export function Footer() {
   return (
@@ -56,15 +56,16 @@ export function Footer() {
                 {siteConfig.address}
               </p>
             )}
-            {contactActions.hasPhone && (
+            {contactPhones.map((phone) => (
               <a
-                href={contactActions.phoneHref}
+                key={phone.href}
+                href={phone.href}
                 className="flex items-center gap-3"
               >
                 <Icon name="phone" className="h-4 w-4 text-amber-300" />
-                {siteConfig.phone}
+                {phone.number}
               </a>
-            )}
+            ))}
             {contactActions.hasEmail && (
               <a
                 href={contactActions.emailHref}

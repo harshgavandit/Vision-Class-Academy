@@ -63,7 +63,9 @@ Add approved academy photographs to `galleryImages` with `id`, `title`, `categor
 
 Set `NEXT_PUBLIC_SITE_URL` to the public site origin before publishing; it controls metadata and sitemap URLs. Local development defaults to localhost.
 
-Set the phone, WhatsApp, email and address environment variables to real academy details. Include the country code in WhatsApp numbers. Missing values never create fake phone or email links.
+The academy's provided phone numbers and email are centralized in `src/data/site-config.ts`. Optional `NEXT_PUBLIC_PHONE_NUMBER`, `NEXT_PUBLIC_SECONDARY_PHONE_NUMBER` and `NEXT_PUBLIC_CONTACT_EMAIL` values override those defaults. Both numbers appear on the Contact page and in the footer; shared Call actions use the primary number.
+
+Set the WhatsApp and address environment variables when those details are confirmed. Include the country code in WhatsApp numbers. Missing values never create fake phone or email links.
 
 Set `NEXT_PUBLIC_BOOKING_URL` to the external provider's HTTPS embed URL. Configure its counselling modes, student/parent fields, course, questions and availability directly with that provider. The page also offers a direct external booking link. Only the provider can confirm an appointment.
 

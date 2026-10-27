@@ -5,9 +5,22 @@ export const contactMethods = ["Phone", "WhatsApp", "Email"] as const;
 export const counsellingTypes = ["Face-to-face", "Phone", "Online"] as const;
 
 const isProvided = (value: string) => Boolean(value.trim()) && !value.includes("[");
-const phoneDigits = siteConfig.phone.replace(/\D/g, "");
+function phoneContact(number: string) {
+  const digits = number.replace(/\D/g, "");
+  if (!isProvided(number) || !/^\+?[\d\s().-]+$/.test(number.trim()) || !/^\d{7,15}$/.test(digits)) {
+    return null;
+  }
+  return {
+    number,
+    href: `tel:${number.trim().startsWith("+") ? "+" : ""}${digits}`,
+  };
+}
+
+const primaryPhone = phoneContact(siteConfig.phone);
+export const contactPhones = [primaryPhone, phoneContact(siteConfig.secondaryPhone)]
+  .filter((phone) => phone !== null);
 const whatsappDigits = siteConfig.whatsapp.replace(/\D/g, "");
-const hasPhone = isProvided(siteConfig.phone) && /^\+?[\d\s().-]+$/.test(siteConfig.phone.trim()) && /^\d{7,15}$/.test(phoneDigits);
+const hasPhone = primaryPhone !== null;
 const hasEmail = isProvided(siteConfig.email) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(siteConfig.email.trim());
 const hasWhatsApp = isProvided(siteConfig.whatsapp) && /^\d{7,15}$/.test(whatsappDigits);
 
@@ -28,7 +41,7 @@ export const contactActions = {
   hasPhone,
   hasEmail,
   hasWhatsApp,
-  phoneHref: hasPhone ? `tel:${siteConfig.phone.trim().startsWith("+") ? "+" : ""}${phoneDigits}` : "/contact",
+  phoneHref: primaryPhone?.href || "/contact",
   emailHref: hasEmail ? `mailto:${siteConfig.email.trim()}` : "/contact",
   whatsappHref: hasWhatsApp ? `https://wa.me/${whatsappDigits}` : "/contact",
   directionsHref: hasAddress ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address)}` : "",

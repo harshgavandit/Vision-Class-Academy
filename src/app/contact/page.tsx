@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { ContactActions } from "@/components/cta";
 import { siteConfig } from "@/data/site-config";
-import { contactActions, hasAddress, mapEmbedUrl } from "@/data/contact";
+import { contactActions, contactPhones, hasAddress, mapEmbedUrl } from "@/data/contact";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -30,7 +30,17 @@ export default function Contact() {
       <section className="section bg-slate-50">
         <div className="container-page">
           <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6"><p className="text-xs font-bold uppercase tracking-wider text-blue-700">Call the academy</p><p className="mt-3 text-lg font-bold text-slate-900">{contactActions.hasPhone ? <a href={contactActions.phoneHref} className="break-words hover:text-blue-700">{siteConfig.phone}</a> : "Phone details coming soon"}</p><p className="mt-2 text-sm leading-6 text-slate-500">Discuss course options and admission queries.</p></div>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6">
+              <p className="text-xs font-bold uppercase tracking-wider text-blue-700">Call the academy</p>
+              {contactPhones.length > 0 ? (
+                <ul className="mt-3 space-y-2 text-lg font-bold text-slate-900">
+                  {contactPhones.map((phone) => (
+                    <li key={phone.href}><a href={phone.href} className="inline-flex min-h-11 items-center break-words hover:text-blue-700">{phone.number}</a></li>
+                  ))}
+                </ul>
+              ) : <p className="mt-3 text-lg font-bold text-slate-900">Phone details coming soon</p>}
+              <p className="mt-2 text-sm leading-6 text-slate-500">Discuss course options and admission queries.</p>
+            </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-6"><p className="text-xs font-bold uppercase tracking-wider text-blue-700">Write to us</p><p className="mt-3 text-lg font-bold text-slate-900">{contactActions.hasEmail ? <a href={contactActions.emailHref} className="break-all hover:text-blue-700">{siteConfig.email}</a> : "Email details coming soon"}</p><p className="mt-2 text-sm leading-6 text-slate-500">Share your questions and course of interest.</p></div>
             <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6 sm:col-span-2 lg:col-span-1"><p className="text-xs font-bold uppercase tracking-wider text-blue-700">Plan a conversation</p><Link href="/book-counselling" className="mt-3 inline-flex text-lg font-bold text-slate-900 hover:text-blue-700">Explore counselling <span aria-hidden="true" className="ml-2">↗</span></Link><p className="mt-2 text-sm leading-6 text-slate-500">Face-to-face, phone or online meeting options.</p></div>
           </div>

@@ -3,6 +3,7 @@ export type SiteConfig = {
   shortName: string;
   description: string;
   phone: string;
+  secondaryPhone: string;
   whatsapp: string;
   email: string;
   address: string;
@@ -26,10 +27,12 @@ export const siteConfig: SiteConfig = {
   description:
     "Supportive coaching for Class 10, Class 11–12 Science, JEE and NEET aspirants.",
   phone:
-    process.env.NEXT_PUBLIC_PHONE_NUMBER?.trim() || "[Phone number required]",
+    process.env.NEXT_PUBLIC_PHONE_NUMBER?.trim() || "+91 7208255534",
+  secondaryPhone:
+    process.env.NEXT_PUBLIC_SECONDARY_PHONE_NUMBER?.trim() || "+91 9137034745",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || "",
   email:
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "[Email address required]",
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "spsvisionscienceacademy@gmail.com",
   address:
     process.env.NEXT_PUBLIC_CLASS_ADDRESS?.trim() || "[Class address required]",
   bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL?.trim() || "",
