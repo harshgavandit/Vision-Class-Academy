@@ -1,2 +1,66 @@
-import type { Metadata } from "next"; export const metadata:Metadata={title:"Teaching Methodology",description:"Learn how Vision Science Academy supports concept-building, practice and revision."};
-export default function Methodology(){const steps=[['01','Build foundations','Lessons should help students understand the idea behind each topic before they move into higher-volume practice.'],['02','Practise deliberately','Students can reinforce learning through guided questions, assignments and focused doubt resolution.'],['03','Review and refine','Regular reflection helps identify gaps, strengthen revision plans and build a steady exam approach.']];return <section className="section"><div className="container-page"><p className="eyebrow">Teaching methodology</p><h1 className="heading">A disciplined, human approach to learning.</h1><p className="copy">The exact academic process, assessment frequency and parent communication cadence should be confirmed with the academy.</p><div className="mt-10 grid gap-5 md:grid-cols-3">{steps.map(([n,t,d])=><article className="card" key={n}><p className="font-bold text-blue-700">{n}</p><h2 className="mt-5 text-xl font-bold">{t}</h2><p className="mt-3 leading-7 text-slate-600">{d}</p></article>)}</div></div></section>}
+import { sharedOpenGraph } from "@/data/site-config";
+import type { Metadata } from "next";
+import { PageHero } from "@/components/page-hero";
+import { AdmissionCta } from "@/components/cta";
+import { learningApproach } from "@/data/presentation";
+import { Icon } from "@/components/icon";
+export const metadata: Metadata = {
+  title: "Teaching Methodology",
+  description:
+    "Learn how Vision Science Academy supports concept-building, practice and revision.",
+  alternates: { canonical: "/methodology" },
+  openGraph: { ...sharedOpenGraph,
+    title: "Teaching Methodology | Vision Science Academy",
+    description:
+      "Explore the questions to ask about concepts, practice, revision and academic guidance.",
+    url: "/methodology",
+  },
+};
+export default function Methodology() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Teaching methodology"
+        title="Understand. Practise. Find your direction."
+        description="Explore how to approach your preparation, then discuss the exact teaching process and academic routines with the academy."
+      />
+      <section className="section">
+        <div className="container-page">
+          <div className="grid gap-6 md:grid-cols-2">
+            {learningApproach.map((item, index) => (
+              <article
+                key={item.title}
+                className="group card !p-8 transition hover:border-blue-200"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                    <Icon name={item.icon} className="h-7 w-7" />
+                  </span>
+                  <span className="text-4xl font-extrabold text-slate-100">
+                    0{index + 1}
+                  </span>
+                </div>
+                <h2 className="mt-7 text-xl font-extrabold text-navy">
+                  {item.title}
+                </h2>
+                <p className="mt-4 text-sm leading-8 text-slate-500">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6">
+            <p className="text-xs font-bold uppercase tracking-widest text-slate-500">
+              Teaching process placeholder
+            </p>
+            <p className="mt-3 text-sm leading-7 text-slate-500">
+              [Verified lesson format, assessment frequency, doubt-session
+              details and parent communication schedule to be added]
+            </p>
+          </div>
+        </div>
+      </section>
+      <AdmissionCta />
+    </>
+  );
+}
