@@ -27,6 +27,7 @@ This source-only website needs no CMS, authentication or database.
 | --- | --- |
 | `src/data/site-config.ts` | Academy identity and environment-backed contact configuration |
 | `src/data/presentation.ts` | Homepage banners, learning approach and admission steps |
+| `src/data/features.ts` | Homepage feature labels and icons |
 | `src/data/courses.ts` | Eight course slugs, overview paragraphs, highlights, suitable students, learning outcomes, categories and illustrations |
 | `src/data/results.ts` | Student result templates, categories and verified achievement records |
 | `src/data/faculty.ts` | Faculty profiles, credentials and optional photographs |
@@ -38,6 +39,8 @@ This source-only website needs no CMS, authentication or database.
 Bracketed names, marks, ranks, years, credentials and other missing details are explicit placeholders. Preview cards are labelled and contain no invented student achievements or photographs. Original academic illustrations live in `public/images/`; they do not depict real students or verified academy facilities.
 
 Course cards, result cards, faculty cards, testimonials, gallery items, section headings and CTAs are reusable components in `src/components/`.
+
+The homepage's Our Unique Features section uses lightweight CSS 3D icon animation. Visitors can pause or resume it; system reduced-motion preferences are respected. Animation pauses when the section is off screen or the browser tab is hidden.
 
 The Courses page has keyboard-accessible course tabs and a shared explanation layout on every individual course page. Edit each course's `explanation.overview`, `explanation.whoShouldEnrol` and `explanation.learningOutcomes` in `src/data/courses.ts`; `highlights` supplies both Key Highlights and the sidebar. Replace `format` with confirmed batch timings. Optional `admission.duration`, `admission.fees` and `admission.batchSize` override the clearly marked sidebar placeholders for that course.
 

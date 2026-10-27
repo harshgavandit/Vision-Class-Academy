@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroSlider } from "@/components/hero-slider";
+import { UniqueFeatures } from "@/components/unique-features";
 import { SectionHeading } from "@/components/section-heading";
 import { ResultsShowcase } from "@/components/results-showcase";
 import { CourseCard } from "@/components/course-card";
@@ -151,6 +152,7 @@ export default function Home() {
           </p>
         </div>
       </section>
+      <UniqueFeatures />
       <section className="section bg-navy">
         <div className="container-page">
           <SectionHeading
